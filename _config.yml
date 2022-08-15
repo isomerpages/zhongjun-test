@@ -53,6 +53,6 @@ staging: https://zhongjun-test-staging.netlify.app
 prod: https://zhongjun-test-prod.netlify.app
 shareicon: /images/aa.png
 is_government: true
-facebook-pixel: 12345test
+facebook-pixel: ""
 google_analytics: ""
-linkedin-insights: test
+linkedin-insights: ""

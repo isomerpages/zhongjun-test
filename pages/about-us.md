@@ -4,4 +4,4 @@ permalink: /about-us
 ---
 Instagram embed test page.
 
-<script src="2"></script>
+<script src=""></script>

@@ -4,3 +4,5 @@ links:
     url: /about-us/
   - title: Contact Us
     url: /contact-us/
+  - title: Resource Room
+    resource_room: true

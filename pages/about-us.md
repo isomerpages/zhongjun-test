@@ -2,4 +2,4 @@
 title: About Us
 permalink: /about-us
 ---
-About us page
+<instagram-embed post-id="ChBcfUHPbjb" />s

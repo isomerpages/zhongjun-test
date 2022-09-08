@@ -5,4 +5,3 @@ description: ""
 ---
 Tests
 
-<script src="//www.instagram.com/embed.js"></script>

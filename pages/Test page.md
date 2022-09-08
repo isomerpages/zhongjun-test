@@ -3,7 +3,7 @@ title: Test page
 permalink: /test/
 description: ""
 ---
-Test
+Tests
 
 <script src="https://www.instagram.com/embed.js"></script>
 

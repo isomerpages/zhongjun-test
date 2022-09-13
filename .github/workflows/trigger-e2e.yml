@@ -113,10 +113,10 @@ jobs:
           status: queued
 
       - name: Test
-        run: echo ${{ fromJSON(steps.get_inprogress_runs.outputs.data) }}
+        run: echo ${{ steps.get_inprogress_runs.outputs.data }}
 
       - name: Test 2
-        run: echo ${{ fromJSON(steps.get_queued_runs.outputs.data) }}
+        run: echo ${{ steps.get_queued_runs.outputs.data }}
 
       - name: Save flag to run e2e tests
         run: echo "ISOMER_CAN_RUN_E2E='${{ fromJSON(steps.get_inprogress_runs.outputs.data).total_count == 0 && fromJSON(steps.get_queued_runs.outputs.data).total_count == 0 }}' >> $GITHUB_ENV"

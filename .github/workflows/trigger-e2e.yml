@@ -77,7 +77,7 @@ jobs:
 
       - name: Reply if user is not authorised
         if: ${{ !env.ISOMER_RUN_E2E }}
-        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} --body "Error: User is not authorised to trigger e2e runs."
+        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} --body "Sorry, @${{ github.actor }} is not authorised to trigger e2e runs."
 
       - name: Fail job if user is not authorised
         if: ${{ !env.ISOMER_RUN_E2E }}

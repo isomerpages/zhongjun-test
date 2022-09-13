@@ -86,11 +86,11 @@ jobs:
         run: echo "ISOMER_ATTEMPT_NUMBER=${{ inputs.attemptNumber }}" >> $GITHUB_ENV
 
       - name: Reply if user is not authorised
-        if: ${{ env.ISOMER_RUN_E2E != true }}
+        if: ${{ env.ISOMER_RUN_E2E != 'true' }}
         run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} -R ${{ github.repository }} --body "Sorry, @${{ github.actor }} is not authorised to trigger e2e runs."
 
       - name: Fail job if user is not authorised
-        if: ${{ env.ISOMER_RUN_E2E != true }}
+        if: ${{ env.ISOMER_RUN_E2E != 'true' }}
         run: exit 1
 
       # Trigger the e2e test suite of it is not currently running

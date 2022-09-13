@@ -77,12 +77,7 @@ jobs:
 
       - name: Reply if user is not authorised
         if: ${{ !env.ISOMER_RUN_E2E }}
-        uses: octokit/request-action@v2.x
-        with:
-          route: POST /repos/{repository}/issues/{issue_number}/comments
-          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
-          issue_number: ${{ env.ISOMER_PULL_NUMBER }}
-          body: "Error: User is not authorised to trigger e2e runs."
+        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} --body "Error: User is not authorised to trigger e2e runs."
 
       - name: Fail job if user is not authorised
         if: ${{ !env.ISOMER_RUN_E2E }}
@@ -144,12 +139,7 @@ jobs:
 
       - name: Dispatch e2e test suite workflow run
         if: ${{ env.ISOMER_CAN_RUN_E2E }}
-        uses: octokit/request-action@v2.x
-        with:
-          route: POST /repos/{repository}/actions/workflows/{workflow_id}/dispatches
-          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
-          workflow_id: ${{ env.ISOMER_E2E_WORKFLOW_NAME }}
-          inputs:
+        run: gh workflow run ${{ env.ISOMER_E2E_WORKFLOW_NAME }}
         env:
           # The original GITHUB_TOKEN cannot perform workflow dispatch
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -173,25 +163,14 @@ jobs:
 
       - name: Add note to pull request
         if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && env.ISOMER_MAX_TRIES_EXCEEDED }}
-        uses: octokit/request-action@v2.x
-        with:
-          route: POST /repos/{repository}/issues/{issue_number}/comments
-          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
-          issue_number: ${{ env.ISOMER_PULL_NUMBER }}
-          body: "There are too many e2e tests running now, please try again later."
+        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} --body "There are too many e2e tests running now, please try again later."
 
       - name: Sleep
         if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && !env.ISOMER_MAX_TRIES_EXCEEDED }}
         run: sleep ${{ env.ISOMER_SLEEP_SECONDS }}
 
       - name: Trigger this workflow job again
-        if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && !env.ISOMER_MAX_TRIES_EXCEEDED }}
-        uses: octokit/request-action@v2.x
-        with:
-          route: POST /repos/{repository}/actions/workflows/{workflow_id}/dispatches
-          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
-          workflow_id: ${{ github.action }}.yml
-          inputs: \{\"issueNumber\":${{ env.ISOMER_PULL_NUMBER }},\"attemptNumber\":${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}\}
+        run: gh workflow run ${{ github.action }}.yml -f issueNumber=${{ env.ISOMER_PULL_NUMBER }} -f attemptNumber=${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}
         env:
           # The original GITHUB_TOKEN cannot perform workflow dispatch
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

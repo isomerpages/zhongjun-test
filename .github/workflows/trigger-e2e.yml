@@ -28,6 +28,8 @@ env:
   ISOMER_SLEEP_SECONDS: 900 # 15 min
   # How many times to retry before failing
   ISOMER_MAX_RETRIES: 10
+  # The file name of this workflow, should match this file name
+  ISOMER_COMMENT_WORKFLOW_NAME: trigger-e2e.yml
   #
   # Variables below are for internal use
   ISOMER_RUN_E2E: false
@@ -77,7 +79,7 @@ jobs:
 
       - name: Reply if user is not authorised
         if: ${{ !env.ISOMER_RUN_E2E }}
-        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} --body "Sorry, @${{ github.actor }} is not authorised to trigger e2e runs."
+        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} -R ${{ github.repository }} --body "Sorry, @${{ github.actor }} is not authorised to trigger e2e runs."
 
       - name: Fail job if user is not authorised
         if: ${{ !env.ISOMER_RUN_E2E }}
@@ -163,15 +165,15 @@ jobs:
 
       - name: Add note to pull request
         if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && env.ISOMER_MAX_TRIES_EXCEEDED }}
-        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} --body "There are too many e2e tests running now, please try again later."
+        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} -R ${{ github.repository }} --body "There are too many e2e tests running now, please try again later."
 
       - name: Sleep
         if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && !env.ISOMER_MAX_TRIES_EXCEEDED }}
         run: sleep ${{ env.ISOMER_SLEEP_SECONDS }}
 
       - name: Trigger this workflow job again
-        run: gh workflow run ${{ github.workflow }} -f issueNumber=${{ env.ISOMER_PULL_NUMBER }} -f attemptNumber=${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}
+        run: gh workflow run ${{ env.ISOMER_COMMENT_WORKFLOW_NAME }} -R ${{ github.repository }} -f issueNumber=${{ env.ISOMER_PULL_NUMBER }} -f attemptNumber=${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}
         env:
           # The original GITHUB_TOKEN cannot perform workflow dispatch
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          ISOMER_NEW_ATTEMPT_NUMBER: ${{ env.ISOMER_ATTEMPT_NUMBER }} + 1
+          ISOMER_NEW_ATTEMPT_NUMBER: ${{ env.ISOMER_ATTEMPT_NUMBER }}+1

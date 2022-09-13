@@ -32,13 +32,13 @@ env:
   ISOMER_COMMENT_WORKFLOW_NAME: trigger-e2e.yml
   #
   # Variables below are for internal use
-  ISOMER_RUN_E2E: false
-  ISOMER_E2E_TEST_TRIGGERED: false
-  ISOMER_MAX_TRIES_EXCEEDED: false
-  ISOMER_CAN_RUN_E2E: false
-  ISOMER_PULL_NUMBER: 1
-  ISOMER_ATTEMPT_NUMBER: 0
-  ISOMER_NEW_ATTEMPT_NUMBER: 0
+  # ISOMER_RUN_E2E: false
+  # ISOMER_E2E_TEST_TRIGGERED: false
+  # ISOMER_MAX_TRIES_EXCEEDED: false
+  # ISOMER_CAN_RUN_E2E: false
+  # ISOMER_PULL_NUMBER: 1
+  # ISOMER_ATTEMPT_NUMBER: 0
+  # ISOMER_NEW_ATTEMPT_NUMBER: 0
   GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
 jobs:
@@ -67,7 +67,7 @@ jobs:
 
       - name: Set environment variable to run e2e tests (for PR comment)
         if: ${{ steps.checkUserMember.outputs.isTeamMember && (github.event_name == 'issue_comment' && github.event.issue.pull_request && steps.check.outputs.triggered) }}
-        run: echo "ISOMER_RUN_E2E='true'" >> $GITHUB_ENV
+        run: echo "ISOMER_RUN_E2E=true" >> $GITHUB_ENV
 
       - name: Set environment variable of pull request number (for PR comment)
         if: ${{ steps.checkUserMember.outputs.isTeamMember && (github.event_name == 'issue_comment' && github.event.issue.pull_request && steps.check.outputs.triggered) }}
@@ -75,7 +75,7 @@ jobs:
 
       - name: Set environment variable to run e2e tests (for workflow dispatch)
         if: ${{ steps.checkUserMember.outputs.isTeamMember && github.event_name == 'workflow_dispatch' }}
-        run: echo "ISOMER_RUN_E2E='true'" >> $GITHUB_ENV
+        run: echo "ISOMER_RUN_E2E=true" >> $GITHUB_ENV
 
       - name: Set environment variable of pull request number (for workflow dispatch)
         if: ${{ steps.checkUserMember.outputs.isTeamMember && github.event_name == 'workflow_dispatch' }}
@@ -86,11 +86,11 @@ jobs:
         run: echo "ISOMER_ATTEMPT_NUMBER=${{ inputs.attemptNumber }} >> $GITHUB_ENV"
 
       - name: Reply if user is not authorised
-        if: ${{ env.ISOMER_RUN_E2E == 'false' }}
+        if: ${{ !env.ISOMER_RUN_E2E }}
         run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} -R ${{ github.repository }} --body "Sorry, @${{ github.actor }} is not authorised to trigger e2e runs."
 
       - name: Fail job if user is not authorised
-        if: ${{ env.ISOMER_RUN_E2E == 'false' }}
+        if: ${{ !env.ISOMER_RUN_E2E }}
         run: exit 1
 
       # Trigger the e2e test suite of it is not currently running
@@ -116,7 +116,7 @@ jobs:
         run: echo "ISOMER_CAN_RUN_E2E='${{ fromJSON(steps.get_inprogress_runs.outputs.data).total_count == '0' && fromJSON(steps.get_queued_runs.outputs.data).total_count == '0' }}' >> $GITHUB_ENV"
 
       - name: Get branch name to build on
-        if: ${{ env.ISOMER_CAN_RUN_E2E == 'true' }}
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
         uses: octokit/request-action@v2.x
         id: get_branch_name
         with:
@@ -125,46 +125,46 @@ jobs:
           pull_number: ${{ env.ISOMER_PULL_NUMBER }}
 
       - name: Save branch name as environment variable
-        if: ${{ env.ISOMER_CAN_RUN_E2E == 'true' }}
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
         run: echo "ISOMER_BRANCH_NAME=${{ fromJSON(steps.get_branch_name.outputs.data).head.ref }}" >> $GITHUB_ENV
 
       - name: Checkout branch
-        if: ${{ env.ISOMER_CAN_RUN_E2E == 'true' }}
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           ref: ${{ env.ISOMER_BRANCH_NAME }}
 
       - name: Push to staging branch
-        if: ${{ env.ISOMER_CAN_RUN_E2E == 'true' }}
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
         run: git push --force origin HEAD:staging-test
 
       - name: Dispatch e2e test suite workflow run
-        if: ${{ env.ISOMER_CAN_RUN_E2E == 'true' }}
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
         run: gh workflow run ${{ env.ISOMER_E2E_WORKFLOW_NAME }}
         env:
           # The original GITHUB_TOKEN cannot perform workflow dispatch
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Record dispatch of e2e test suite workflow run
-        if: ${{ env.ISOMER_CAN_RUN_E2E == 'true' && success() }}
-        run: echo "ISOMER_E2E_TEST_TRIGGERED='true'" >> $GITHUB_ENV
+        if: ${{ env.ISOMER_CAN_RUN_E2E && success() }}
+        run: echo "ISOMER_E2E_TEST_TRIGGERED=true" >> $GITHUB_ENV
 
       # Re-queue the workflow if e2e tests are not triggered
       - name: Add note to pull request
-        if: ${{ (env.ISOMER_CAN_RUN_E2E == 'false' || env.ISOMER_E2E_TEST_TRIGGERED == 'false') && env.ISOMER_MAX_RETRIES == env.ISOMER_ATTEMPT_NUMBER }}
+        if: ${{ (!env.ISOMER_CAN_RUN_E2E || !env.ISOMER_E2E_TEST_TRIGGERED) && env.ISOMER_MAX_RETRIES == env.ISOMER_ATTEMPT_NUMBER }}
         run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} -R ${{ github.repository }} --body "Sorry @${{ github.actor }}, there are too many e2e tests running now, please try again later."
 
       - name: Sleep before triggering this workflow job again
-        if: ${{ (env.ISOMER_CAN_RUN_E2E == 'false' || env.ISOMER_E2E_TEST_TRIGGERED == 'false') && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}
+        if: ${{ (!env.ISOMER_CAN_RUN_E2E || !env.ISOMER_E2E_TEST_TRIGGERED) && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}
         run: sleep ${{ env.ISOMER_SLEEP_SECONDS }}
 
       - name: Determine new attempt number
-        if: ${{ (env.ISOMER_CAN_RUN_E2E == 'false' || env.ISOMER_E2E_TEST_TRIGGERED == 'false') && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}
+        if: ${{ (!env.ISOMER_CAN_RUN_E2E || !env.ISOMER_E2E_TEST_TRIGGERED) && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}
         run: echo "ISOMER_NEW_ATTEMPT_NUMBER='$(($ISOMER_ATTEMPT_NUMBER+1))'" >> $GITHUB_ENV
 
       - name: Trigger this workflow job again
-        if: ${{ (env.ISOMER_CAN_RUN_E2E == 'false' || env.ISOMER_E2E_TEST_TRIGGERED == 'false') && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}
+        if: ${{ (!env.ISOMER_CAN_RUN_E2E || !env.ISOMER_E2E_TEST_TRIGGERED) && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}
         run: gh workflow run ${{ env.ISOMER_COMMENT_WORKFLOW_NAME }} -R ${{ github.repository }} -f issueNumber=${{ env.ISOMER_PULL_NUMBER }} -f attemptNumber=${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}
         env:
           # The original GITHUB_TOKEN cannot perform workflow dispatch

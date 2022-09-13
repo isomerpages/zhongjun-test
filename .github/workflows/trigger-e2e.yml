@@ -1,0 +1,197 @@
+name: Trigger e2e tests
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+  workflow_dispatch:
+    inputs:
+      issueNumber:
+        description: "The pull request number to build e2e tests on"
+        required: true
+        default: 1
+        type: number
+      attemptNumber:
+        description: "Attempt number"
+        required: false
+        default: 0
+        type: number
+
+env:
+  # The full comment text to match to trigger this workflow
+  ISOMER_TRIGGER_COMMENT: "!run e2e"
+  # The file name of the e2e test workflow
+  ISOMER_E2E_WORKFLOW_NAME: ci-e2e.yml
+  # The slug for the Isomer core team
+  ISOMER_CORE_TEAM_SLUG: core
+  # How long to wait before queuing again (roughly half the time taken for e2e tests to run)
+  ISOMER_SLEEP_SECONDS: 900 # 15 min
+  # How many times to retry before failing
+  ISOMER_MAX_RETRIES: 10
+  #
+  # Variables below are for internal use
+  ISOMER_RUN_E2E: false
+  ISOMER_E2E_TEST_TRIGGERED: false
+  ISOMER_MAX_TRIES_EXCEEDED: false
+  ISOMER_CAN_RUN_E2E: false
+  ISOMER_PULL_NUMBER: 1
+  ISOMER_ATTEMPT_NUMBER: 0
+  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+jobs:
+  process:
+    # Determine if the PR comment should trigger the e2e test suite
+    name: Determine if e2e should be triggered
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Check if user is part of Isomer core team
+        uses: tspascoal/get-user-teams-membership@v1
+        id: checkUserMember
+        with:
+          username: ${{ github.actor }}
+          team: ${{ env.ISOMER_CORE_TEAM_SLUG }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # requires read:org
+
+      - name: Check for trigger words (in PR comment)
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && github.event_name == 'issue_comment' && github.event.issue.pull_request }}
+        uses: khan/pull-request-comment-trigger@v1.1.0
+        id: check
+        with:
+          trigger: "${{ env.ISOMER_TRIGGER_COMMENT }}"
+          reaction: "+1"
+
+      - name: Set environment variables to run e2e tests (for PR comment)
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && (github.event_name == 'issue_comment' && github.event.issue.pull_request && steps.check.outputs.triggered == 'true') }}
+        run: |
+          echo "ISOMER_RUN_E2E=true" >> $GITHUB_ENV
+          echo "ISOMER_PULL_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
+
+      - name: Set environment variable to run e2e tests (for workflow dispatch)
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "ISOMER_RUN_E2E=true" >> $GITHUB_ENV
+          echo "ISOMER_PULL_NUMBER=${{ inputs.issueNumber }}" >> $GITHUB_ENV
+          echo "ISOMER_ATTEMPT_NUMBER=${{ inputs.attemptNumber }} >> $GITHUB_ENV"
+
+      - name: Reply if user is not authorised
+        if: ${{ !env.ISOMER_RUN_E2E }}
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/{repository}/issues/{issue_number}/comments
+          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
+          issue_number: ${{ env.ISOMER_PULL_NUMBER }}
+          body: "Error: User is not authorised to trigger e2e runs."
+
+      - name: Fail job if user is not authorised
+        if: ${{ !env.ISOMER_RUN_E2E }}
+        run: exit 1
+
+  dispatch:
+    # Trigger the e2e test suite if it is not currently running
+    name: Attempt to trigger e2e test suite workflow run
+    needs: process
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Check for current in_progress e2e test runs
+        uses: octokit/request-action@v2.x
+        id: get_inprogress_runs
+        with:
+          route: GET /repos/{repository}/actions/workflows/{workflow_id}/runs
+          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
+          workflow_id: ${{ env.ISOMER_E2E_WORKFLOW_NAME }}
+          status: in_progress
+
+      - name: Check for current queued e2e test runs
+        uses: octokit/request-action@v2.x
+        id: get_queued_runs
+        with:
+          route: GET /repos/{repository}/actions/workflows/{workflow_id}/runs
+          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
+          workflow_id: ${{ env.ISOMER_E2E_WORKFLOW_NAME }}
+          status: queued
+
+      - name: Save flag to run e2e tests
+        run: echo "ISOMER_CAN_RUN_E2E=${{ fromJSON(steps.get_inprogress_runs.outputs.data).total_count == 0 && fromJSON(steps.get_queued_runs.outputs.data).total_count == 0 }} >> $GITHUB_ENV"
+
+      - name: Get branch name to build on
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
+        uses: octokit/request-action@v2.x
+        id: get_branch_name
+        with:
+          route: GET /repos/{repository}/pulls/{pull_number}
+          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
+          pull_number: ${{ env.ISOMER_PULL_NUMBER }}
+
+      - name: Save branch name as environment variable
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
+        run: echo "ISOMER_BRANCH_NAME=${{ fromJSON(steps.get_branch_name.outputs.data).head.ref }}" >> $GITHUB_REF
+
+      - name: Checkout branch
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ env.ISOMER_BRANCH_NAME }}
+
+      - name: Push to staging branch
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
+        run: git push --force origin HEAD:staging-test
+
+      - name: Dispatch e2e test suite workflow run
+        if: ${{ env.ISOMER_CAN_RUN_E2E }}
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/{repository}/actions/workflows/{workflow_id}/dispatches
+          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
+          workflow_id: ${{ env.ISOMER_E2E_WORKFLOW_NAME }}
+        env:
+          # The original GITHUB_TOKEN cannot perform workflow dispatch
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Record dispatch of e2e test suite workflow run
+        if: ${{ env.ISOMER_CAN_RUN_E2E && success() }}
+        run: echo "ISOMER_E2E_TEST_TRIGGERED=true" >> $GITHUB_ENV
+
+  queue:
+    # Re-queue the workflow if e2e tests not triggered
+    name: Re-queue e2e tests trigger
+    needs: dispatch
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Check if the max retries have been reached
+        if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && env.ISOMER_MAX_RETRIES == env.ISOMER_ATTEMPT_NUMBER }}
+        run: echo "ISOMER_MAX_TRIES_EXCEEDED=true" >> $GITHUB_ENV
+
+      - name: Add note to pull request
+        if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && env.ISOMER_MAX_TRIES_EXCEEDED }}
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/{repository}/issues/{issue_number}/comments
+          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
+          issue_number: ${{ env.ISOMER_PULL_NUMBER }}
+          body: "There are too many e2e tests running now, please try again later."
+
+      - name: Sleep
+        if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && !env.ISOMER_MAX_TRIES_EXCEEDED }}
+        run: sleep ${{ env.ISOMER_SLEEP_SECONDS }}
+
+      - name: Trigger this workflow job again
+        if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && !env.ISOMER_MAX_TRIES_EXCEEDED }}
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/{repository}/actions/workflows/{workflow_id}/dispatches
+          repository: ${{ github.repository }} # isomerpages/isomercms-frontend
+          workflow_id: ${{ github.action }}.yml
+          inputs: \{\"issueNumber\":${{ env.ISOMER_PULL_NUMBER }},\"attemptNumber\":${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}\}
+        env:
+          # The original GITHUB_TOKEN cannot perform workflow dispatch
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          ISOMER_NEW_ATTEMPT_NUMBER: ${{ env.ISOMER_ATTEMPT_NUMBER }} + 1

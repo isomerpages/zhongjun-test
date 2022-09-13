@@ -119,7 +119,7 @@ jobs:
         run: echo ${{ steps.get_queued_runs.outputs.data }}
 
       - name: Save flag to run e2e tests
-        run: echo "ISOMER_CAN_RUN_E2E='${{ fromJSON(steps.get_inprogress_runs.outputs.data).total_count == 0 && fromJSON(steps.get_queued_runs.outputs.data).total_count == 0 }}' >> $GITHUB_ENV"
+        run: echo "ISOMER_CAN_RUN_E2E='${{ fromJSON(steps.get_inprogress_runs.outputs.data).total_count == '0' && fromJSON(steps.get_queued_runs.outputs.data).total_count == '0' }}' >> $GITHUB_ENV"
 
       - name: Get branch name to build on
         if: ${{ env.ISOMER_CAN_RUN_E2E }}

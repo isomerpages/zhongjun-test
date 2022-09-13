@@ -159,6 +159,9 @@ jobs:
     environment: staging
 
     steps:
+      - name: Print environment
+        run: echo "1"
+
       - name: Check if the max retries have been reached
         if: ${{ env.ISOMER_RUN_E2E == 'true' && env.ISOMER_E2E_TEST_TRIGGERED != 'true' && env.ISOMER_MAX_RETRIES == env.ISOMER_ATTEMPT_NUMBER }}
         run: echo "ISOMER_MAX_TRIES_EXCEEDED='true'" >> $GITHUB_ENV

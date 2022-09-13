@@ -25,7 +25,7 @@ env:
   # The slug for the Isomer core team
   ISOMER_CORE_TEAM_SLUG: core
   # How long to wait before queuing again (roughly half the time taken for e2e tests to run)
-  ISOMER_SLEEP_SECONDS: 900 # 15 min
+  ISOMER_SLEEP_SECONDS: 15 # 15 min
   # How many times to retry before failing
   ISOMER_MAX_RETRIES: 10
   # The file name of this workflow, should match this file name
@@ -145,7 +145,7 @@ jobs:
       # Re-queue the workflow if e2e tests are not triggered
       - name: Add note to pull request
         if: ${{ (env.ISOMER_CAN_RUN_E2E == 'false' || env.ISOMER_E2E_TEST_TRIGGERED == 'false') && env.ISOMER_MAX_RETRIES == env.ISOMER_ATTEMPT_NUMBER }}
-        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} -R ${{ github.repository }} --body "There are too many e2e tests running now, please try again later."
+        run: gh pr comment ${{ env.ISOMER_PULL_NUMBER }} -R ${{ github.repository }} --body "Sorry @${{ github.actor }}, there are too many e2e tests running now, please try again later."
 
       - name: Sleep before triggering this workflow job again
         if: ${{ (env.ISOMER_CAN_RUN_E2E == 'false' || env.ISOMER_E2E_TEST_TRIGGERED == 'false') && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}

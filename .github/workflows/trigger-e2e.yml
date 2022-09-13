@@ -153,7 +153,7 @@ jobs:
 
       - name: Determine new attempt number
         if: ${{ (env.ISOMER_CAN_RUN_E2E == 'false' || env.ISOMER_E2E_TEST_TRIGGERED == 'false') && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}
-        run: echo ::set-env name=ISOMER_NEW_ATTEMPT_NUMBER::$(({{ env.ISOMER_ATTEMPT_NUMBER }}+1))
+        run: echo ::set-env name=ISOMER_NEW_ATTEMPT_NUMBER::$(($ISOMER_ATTEMPT_NUMBER+1))
 
       - name: Trigger this workflow job again
         if: ${{ (env.ISOMER_CAN_RUN_E2E == 'false' || env.ISOMER_E2E_TEST_TRIGGERED == 'false') && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}

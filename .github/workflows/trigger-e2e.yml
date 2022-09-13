@@ -66,18 +66,28 @@ jobs:
           reaction: "+1"
 
       - name: Set environment variable to run e2e tests (for PR comment)
-        if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' && (github.event_name == 'issue_comment' && github.event.issue.pull_request && steps.check.outputs.triggered) }}
-        run: |
-          echo "ISOMER_RUN_E2E=true" >> $GITHUB_ENV
-          echo "ISOMER_PULL_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
-          echo "ISOMER_ATTEMPT_NUMBER=1" >> $GITHUB_ENV
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && (github.event_name == 'issue_comment' && github.event.issue.pull_request && steps.check.outputs.triggered) }}
+        run: echo "ISOMER_RUN_E2E=true" >> $GITHUB_ENV
+
+      - name: Set environment variable of pull request number (for PR comment)
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && (github.event_name == 'issue_comment' && github.event.issue.pull_request && steps.check.outputs.triggered) }}
+        run: echo "ISOMER_PULL_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
+
+      - name: Set environment variable of pull request number (for PR comment)
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && (github.event_name == 'issue_comment' && github.event.issue.pull_request && steps.check.outputs.triggered) }}
+        run: echo "ISOMER_ATTEMPT_NUMBER=1" >> $GITHUB_ENV
 
       - name: Set environment variable to run e2e tests (for workflow dispatch)
-        if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' && github.event_name == 'workflow_dispatch' }}
-        run: |
-          echo "ISOMER_RUN_E2E=true" >> $GITHUB_ENV
-          echo "ISOMER_PULL_NUMBER=${{ inputs.issueNumber }}" >> $GITHUB_ENV
-          echo "ISOMER_ATTEMPT_NUMBER=${{ inputs.attemptNumber }}" >> $GITHUB_ENV
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && github.event_name == 'workflow_dispatch' }}
+        run: echo "ISOMER_RUN_E2E=true" >> $GITHUB_ENV
+
+      - name: Set environment variable of pull request number (for workflow dispatch)
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && github.event_name == 'workflow_dispatch' }}
+        run: echo "ISOMER_PULL_NUMBER=${{ inputs.issueNumber }}" >> $GITHUB_ENV
+
+      - name: Set environment variable of workflow dispatch attempt number (for workflow dispatch)
+        if: ${{ steps.checkUserMember.outputs.isTeamMember && github.event_name == 'workflow_dispatch' }}
+        run: echo "ISOMER_ATTEMPT_NUMBER=${{ inputs.attemptNumber }}" >> $GITHUB_ENV
 
       - name: Reply if user is not authorised
         if: ${{ env.ISOMER_RUN_E2E != 'true' }}

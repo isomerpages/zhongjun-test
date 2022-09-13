@@ -172,6 +172,7 @@ jobs:
         run: sleep ${{ env.ISOMER_SLEEP_SECONDS }}
 
       - name: Trigger this workflow job again
+        if: ${{ env.ISOMER_RUN_E2E && !env.ISOMER_E2E_TEST_TRIGGERED && !env.ISOMER_MAX_TRIES_EXCEEDED }}
         run: gh workflow run ${{ env.ISOMER_COMMENT_WORKFLOW_NAME }} -R ${{ github.repository }} -f issueNumber=${{ env.ISOMER_PULL_NUMBER }} -f attemptNumber=${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}
         env:
           # The original GITHUB_TOKEN cannot perform workflow dispatch

@@ -170,7 +170,7 @@ jobs:
         run: sleep ${{ env.ISOMER_SLEEP_SECONDS }}
 
       - name: Trigger this workflow job again
-        run: gh workflow run ${{ github.action }}.yml -f issueNumber=${{ env.ISOMER_PULL_NUMBER }} -f attemptNumber=${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}
+        run: gh workflow run ${{ github.workflow }} -f issueNumber=${{ env.ISOMER_PULL_NUMBER }} -f attemptNumber=${{ env.ISOMER_NEW_ATTEMPT_NUMBER }}
         env:
           # The original GITHUB_TOKEN cannot perform workflow dispatch
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

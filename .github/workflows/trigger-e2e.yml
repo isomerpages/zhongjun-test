@@ -113,7 +113,7 @@ jobs:
           status: queued
 
       - name: Save flag to run e2e tests
-        run: echo "ISOMER_CAN_RUN_E2E='${{ fromJSON(steps.get_inprogress_runs.outputs.data).total_count == '0' && fromJSON(steps.get_queued_runs.outputs.data).total_count == '0' }}' >> $GITHUB_ENV"
+        run: echo "ISOMER_CAN_RUN_E2E=${{ fromJSON(steps.get_inprogress_runs.outputs.data).total_count == '0' && fromJSON(steps.get_queued_runs.outputs.data).total_count == '0' }} >> $GITHUB_ENV"
 
       - name: Get branch name to build on
         if: ${{ env.ISOMER_CAN_RUN_E2E }}
@@ -161,7 +161,7 @@ jobs:
 
       - name: Determine new attempt number
         if: ${{ (!env.ISOMER_CAN_RUN_E2E || !env.ISOMER_E2E_TEST_TRIGGERED) && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}
-        run: echo "ISOMER_NEW_ATTEMPT_NUMBER='$(($ISOMER_ATTEMPT_NUMBER+1))'" >> $GITHUB_ENV
+        run: echo "ISOMER_NEW_ATTEMPT_NUMBER=$(($ISOMER_ATTEMPT_NUMBER+1))" >> $GITHUB_ENV
 
       - name: Trigger this workflow job again
         if: ${{ (!env.ISOMER_CAN_RUN_E2E || !env.ISOMER_E2E_TEST_TRIGGERED) && env.ISOMER_MAX_RETRIES != env.ISOMER_ATTEMPT_NUMBER }}

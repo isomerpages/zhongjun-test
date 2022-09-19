@@ -3,4 +3,4 @@ title: Test page
 permalink: /test/
 description: ""
 ---
-Test
+This is a test page.

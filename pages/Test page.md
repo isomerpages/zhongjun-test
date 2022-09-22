@@ -5,4 +5,3 @@ description: ""
 ---
 This is a test page.
 
-<code></code>

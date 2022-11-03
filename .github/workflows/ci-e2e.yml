@@ -1,0 +1,38 @@
+name: ci-e2e
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+# Required for allowing PRs to master branch to be of highest priority
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Install job"
+
+  lint:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Lint job"
+
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+    env:
+      CI: false
+    steps:
+      - run: echo "Build job"
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test job"
+      - run: sleep 300

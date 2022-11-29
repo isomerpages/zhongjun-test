@@ -25,7 +25,7 @@ sections:
   - infobar:
       title: Infobar title
       subtitle: Subtitle
-      description: About a sentence worth of description here
+      description: <script async src="//www.instagram.com/embed.js"></script>
       button: Button text
       url: /faq/
   - resources:

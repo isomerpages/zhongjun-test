@@ -25,7 +25,7 @@ sections:
   - infobar:
       title: Infobar title
       subtitle: Subtitle
-      description: <script>alert(1)</script>
+      description: hi
       button: Button text
       url: /faq/
   - resources:

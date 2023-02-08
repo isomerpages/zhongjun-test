@@ -8,8 +8,7 @@ notification: Here's a notification bar you can use!
 sections:
   - hero:
       title: WizGov Widget
-      subtitle: This is a dummy website of how a WizGov Widget would look like on a
-        website
+      subtitle: This is an example of how a WizGov Widget would look like on a website
       background: /images/hero-banner.png
       button: Contact Us
       url: /contact-us/

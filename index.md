@@ -1,7 +1,7 @@
 ---
 layout: homepage
 title: Titles
-description: <div id="wizgov-widget"></div>
+description: desc
 image: /images/aa.png
 permalink: /
 notification: Here's a notification bar you can use!
@@ -25,7 +25,7 @@ sections:
   - infobar:
       title: Infobar title
       subtitle: Subtitle
-      description: hi
+      description: <div id="wizgov-widget"></div><link rel="stylesheet" href="https://widget-build.s3.ap-southeast-1.amazonaws.com/index.css"/> <script src="https://widget-build.s3.ap-southeast-1.amazonaws.com/index.js"></script>
       button: Button text
       url: /faq/
   - resources:

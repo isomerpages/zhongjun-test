@@ -25,7 +25,7 @@ sections:
   - infobar:
       title: Infobar title
       subtitle: Subtitle
-      description: <div id="wizgov-widget"></div><link rel="stylesheet" href="https://widget-build.s3.ap-southeast-1.amazonaws.com/index.css"/> <script src="https://widget-build.s3.ap-southeast-1.amazonaws.com/index.js"></script>
+      description: normal
       button: Button text
       url: /faq/
   - resources:

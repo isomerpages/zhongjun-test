@@ -8,5 +8,3 @@ This is a test page.
 Example test.
 
 Another test.
-
-Yet another test.

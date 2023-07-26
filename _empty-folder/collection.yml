@@ -1,0 +1,4 @@
+collections:
+  empty-folder:
+    output: true
+    order: []

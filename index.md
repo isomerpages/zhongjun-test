@@ -4,7 +4,7 @@ title: Titles
 description: desc
 image: /images/aa.png
 permalink: /
-notification: Here's a notification bar you can use!
+notification: Here's a notification bar you can use
 sections:
   - hero:
       title: WizGov Widget

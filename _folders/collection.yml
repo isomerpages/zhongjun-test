@@ -2,5 +2,4 @@ collections:
   folders:
     output: true
     order:
-      - Test page.md
       - Another test page.md

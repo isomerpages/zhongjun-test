@@ -1,4 +1,5 @@
 collections:
   folders:
     output: true
-    order: []
+    order:
+      - Another test page.md

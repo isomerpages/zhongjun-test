@@ -2,5 +2,6 @@ collections:
   folders:
     output: true
     order:
+      - faq.md
       - Test page.md
       - Another test page.md

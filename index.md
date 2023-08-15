@@ -1,7 +1,7 @@
 ---
 layout: homepage
-title: Titles
-description: desc
+title: Titles Titles
+description: An Isomer site of the Singapore Government!
 image: /images/aa.png
 permalink: /
 notification: Here's a notification bar you can use

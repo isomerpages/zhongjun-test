@@ -2,6 +2,8 @@ logo: /images/isomer-logo.svg
 links:
   - title: About Us
     url: /about-us/
+  - title: Test Page
+    url: /test
   - title: Resource Room
     resource_room: true
   - title: Contact Us

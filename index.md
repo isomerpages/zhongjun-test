@@ -38,6 +38,7 @@ sections:
       description: Infopic description
       button: Button Text
       alt: Image alt text
+      image: /images/rubber-g7de116bc3_1280.png
   - infopic:
       title: Infopic Title
       subtitle: Infopic Subtitle

@@ -2,5 +2,6 @@ collections:
   test:
     output: true
     order:
+      - Test Subfolder/Subfolder page.md
       - Test Subfolder/.keep
       - Example Title.md

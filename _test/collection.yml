@@ -2,4 +2,5 @@ collections:
   test:
     output: true
     order:
+      - Test Subfolder/.keep
       - Example Title.md

@@ -6,3 +6,4 @@ layout: post
 description: ""
 image: /images/pexels-andras-stefuca-17646452.jpg
 ---
+This resource room page is a test.

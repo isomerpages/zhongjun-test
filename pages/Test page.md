@@ -3,6 +3,8 @@ title: Test page
 permalink: /test/
 description: ""
 ---
+&gt; This is a quote block
+
 This is a test page.
 
 Example test.

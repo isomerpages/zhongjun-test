@@ -57,7 +57,7 @@ sections:
       announcement_items:
         - title: New Announcement
           date: 11 October 2023
-          announcement: Announcement content
+          announcement: Announcement content!!!
           link_text: ""
           link_url: ""
 ---

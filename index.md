@@ -50,4 +50,14 @@ sections:
       subtitle: Infobar Subtitle
       description: Infobar description
       button: Button Text
+  - announcements:
+      title: Announcements
+      id: announcements
+      subtitle: Add a list of announcements with dates
+      announcement_items:
+        - title: New Announcement
+          date: 11 October 2023
+          announcement: Announcement content
+          link_text: ""
+          link_url: ""
 ---

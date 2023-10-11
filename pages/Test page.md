@@ -3,8 +3,6 @@ title: Test page
 permalink: /test/
 description: ""
 ---
-&gt; Force Quote on existing page
-
 This is a test page.
 
 Example test.

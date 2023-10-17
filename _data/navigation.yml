@@ -9,9 +9,9 @@ links:
   - title: Custom group
     url: /permalink
     sublinks:
-      - title: Submenu item
-        url: /permalink
       - title: Another item
         url: https://www.isomer.gov.sg
+      - title: Submenu item
+        url: /permalink
   - title: Contact Us
     url: /contact-us/

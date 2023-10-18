@@ -5,7 +5,7 @@ links:
   - title: Resources
     resource_room: true
   - title: Test
-    collection: test
+    collection: test-four
   - title: Custom group
     url: /permalink
     sublinks:

@@ -1,0 +1,4 @@
+collections:
+  test-six:
+    output: true
+    order: []

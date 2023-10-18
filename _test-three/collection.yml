@@ -1,0 +1,4 @@
+collections:
+  test-three:
+    output: true
+    order: []

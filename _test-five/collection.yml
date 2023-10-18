@@ -1,0 +1,4 @@
+collections:
+  test-five:
+    output: true
+    order: []

@@ -1,6 +1,6 @@
 ---
 layout: homepage
-title: Titles Titles
+title: Site Titles
 description: An Isomer site of the Singapore Government!
 image: /images/aa.png
 permalink: /

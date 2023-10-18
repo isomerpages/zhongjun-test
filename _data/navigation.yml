@@ -1,6 +1,6 @@
 logo: /images/isomer-logo.svg
 links:
-  - title: About Us
+  - title: About
     url: /about
   - title: Resources
     resource_room: true
@@ -13,3 +13,5 @@ links:
         url: /permalink
   - title: Contact Us
     url: /contact-us/
+  - title: New folder
+    collection: empty-folder

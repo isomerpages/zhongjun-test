@@ -4,8 +4,6 @@ links:
     url: /about
   - title: Resources
     resource_room: true
-  - title: New folder
-    collection: test-three
   - title: Custom group
     url: /permalink
     sublinks:

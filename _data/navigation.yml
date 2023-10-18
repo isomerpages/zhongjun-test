@@ -1,11 +1,11 @@
 logo: /images/isomer-logo.svg
 links:
-  - title: About Us
+  - title: About Ussdsasa
     url: /about
   - title: Resources
     resource_room: true
   - title: New folder
-    collection: test
+    collection: test-three
   - title: Custom group
     url: /permalink
     sublinks:

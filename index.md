@@ -4,11 +4,11 @@ title: Site Titles
 description: An Isomer site of the Singapore Government!
 image: /images/aa.png
 permalink: /
-notification: Here's a notification bar you can use!!!
+notification: Here's a notification bar you can use
 sections:
   - hero:
       title: Build an amazing website
-      subtitle: Percuma, fast, easy
+      subtitle: Free, fast, easy
       background: /images/hero-banner.png
       button: Contact Us
       url: /contact-us/

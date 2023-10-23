@@ -22,5 +22,5 @@ locations:
       - ""
     operating_hours: []
     maps_link: ""
-    title: Branch Office
+    title: Main Office
 ---

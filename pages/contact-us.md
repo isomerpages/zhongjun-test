@@ -15,4 +15,12 @@ contacts:
       - other: ""
     title: Careers
 feedback: https://form.gov.sg/5fb35a865fa47f0011040d74
+locations:
+  - address:
+      - ""
+      - ""
+      - ""
+    title: Main Office
+    operating_hours: []
+    maps_link: ""
 ---

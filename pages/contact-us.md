@@ -5,8 +5,8 @@ permalink: /contact-us/
 agency_name: Zhong Jun Inc.
 contacts:
   - content:
-      - phone: +65 6123 4567
-      - email: enquiries@abc.gov.sg
+      - phone: ""
+      - email: ""
       - other: Any text here <i>including HTML</i>
     title: General Enquiries & Feedback
   - content:
@@ -15,12 +15,4 @@ contacts:
       - other: ""
     title: Careers
 feedback: https://form.gov.sg/5fb35a865fa47f0011040d74
-locations:
-  - address:
-      - ""
-      - ""
-      - ""
-    operating_hours: []
-    maps_link: ""
-    title: Office
 ---

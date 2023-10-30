@@ -18,3 +18,5 @@ Another test. <span style="color:red">Test HTML</span>
 | weewf | gbfd   |
 
 Test
+
+Time generated: {{ site.time }}

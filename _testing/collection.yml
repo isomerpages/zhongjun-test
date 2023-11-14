@@ -1,5 +1,5 @@
 collections:
-  test:
+  testing:
     output: true
     order:
       - Test page.md

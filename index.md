@@ -7,7 +7,7 @@ permalink: /
 notification: Here's a notification bar you can test
 sections:
   - hero:
-      title: Build an amazing website
+      title: The Socio-Economic Impact of HIV/AIDS  in Singapore
       subtitle: Free, fast, easy
       background: /images/hero-banner.png
       button: Contact Us

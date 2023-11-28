@@ -7,7 +7,7 @@ permalink: /
 notification: Here's a notification bar-you can test
 sections:
   - hero:
-      title: The SocioEconomic Impact of HIV/AIDS  in Singapore
+      title: Nature Site
       subtitle: Free, fast, easy
       background: /images/hero-banner.png
       button: Contact Us

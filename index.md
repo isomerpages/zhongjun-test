@@ -4,10 +4,10 @@ title: Site Titles
 description: An Isomer site of the Singapore Government!
 image: /images/aa.png
 permalink: /
-notification: Here's a notification bar you can test
+notification: Here's a notification bar-you can test
 sections:
   - hero:
-      title: The Socio-Economic Impact of HIV/AIDS  in Singapore
+      title: The SocioEconomic Impact of HIV/AIDS  in Singapore
       subtitle: Free, fast, easy
       background: /images/hero-banner.png
       button: Contact Us

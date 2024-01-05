@@ -8,6 +8,6 @@ variant: markdown
 
 This is a test.
 
-A test! Test! Change.~
+A test! Test! Change!
 
 Really test!!!<p></p>

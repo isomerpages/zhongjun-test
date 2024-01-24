@@ -1,7 +1,58 @@
 ---
 title: Test Jank
 permalink: /test-jank/
-variant: markdown
+variant: tiptap
 description: ""
 ---
-<p></p><a class="isomer-image-wrapper" href="https:///for.sg/nhip2024package"><img style="width: 100%" height="auto" width="100%" alt="" src="/images/Nhip/Download_here_icon.png"></a><p></p><div class="isomer-image-wrapper"><img style="width: 100%" height="auto" width="100%" alt="" src="/images/Nhip/NHIP_webpage_design_Final_revised_.png"></div><h3>National HIP 2024 Highlights</h3><p><strong><u>Best Adopter Medals – Expanded Criteria from 2023</u></strong><br>Best Adopter Medals award category is back for the 2nd time with expanded criteria of recognising <strong><em>Teams</em></strong> that have adopted <strong><em>past Nationally or Internationally awarded solution(s)</em></strong> <u>outside of their institutions</u> and have demonstrated positive impact through improved efficiency, productivity, and sustainability.</p><ul data-tight="true" class="tight"><li><p>There will be up to three Best Adopter Medals with awards of <strong>S$1,000</strong> each.</p></li><li><p>Solution(s) adopted <u>may be modified from the originator</u>, to suit the needs of institutions</p></li></ul><p><strong><u>2nd run of Seed Fund for Winning Teams</u></strong><br>A seed fund of S$50,000 will be awarded to each eligible* winning team for a 12-month period to develop and implement new innovative projects.</p><ul data-tight="true" class="tight"><li><p>The seed fund aims to incentivise the winning teams to ride on the momentum of innovation.</p><p></p></li></ul><p><em>* Eligibility for Seed Fund: Only winning teams (of any of the 4 winning categories above) from MOH/MOHH entities or those who will embark on new innovation projects in collaboration with MOH/MOHH entities.</em><br></p><h3>Award Timeline</h3><div class="isomer-image-wrapper"><img style="width: 100%;" height="auto" width="100%" alt="" src="/images/Nhip/NHIP_2024_Major_Timeline_Final.png"></div><p></p><h3>Queries</h3><p>If you have any queries, please contact the National HIP Secretariat at&nbsp;nhip@chi.sg</p><p></p>
+<p>Come onboard NACLI’s learning journey today! Download the latest copy
+    of our Training Schedule here! Click on the image below to download a copy
+    to your devices.</p>
+<h4>Training Schedule</h4>
+<h5>Current Issue (Jan - Jun 2024)</h5>
+<p></p><a class="isomer-image-wrapper" href="https://go.gov.sg/naclicourses-issue10-jan-jun-2024"><img style="width: 100%" height="auto" width="100%" alt="" src="/images/Our Network/NACLI/Jan___Jun_2024.png"></a>
+<h3>Past Issues<br><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue6-jan-mar-2023.pdf" rel="noopener noreferrer nofollow" target="_blank">Jan - Mar 2023</a><br><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue7-apr-jun-2023-v2.pdf" rel="noopener noreferrer nofollow" target="_blank">Apr - Jun 2023</a><br><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue8-jul-dec-2023.pdf" rel="noopener noreferrer nofollow" target="_blank">Jul - Dec 2023</a><br><a href="/files/naclicourses_issue8_oct_2023_mar_2024__v2_.pdf" rel="noopener noreferrer nofollow" target="_blank">Oct 2023 - Mar 2024</a><br><a href="/files/NACLI/02%20Learn%20with%20NACLI/naclicourses-issue2-janmar-2022.pdf" rel="noopener noreferrer nofollow" target="_blank">Jan - Mar 2022</a><br><a href="/files/NACLI/02%20Learn%20with%20NACLI/naclicourses-issue3-apr-jun-2022.pdf" rel="noopener noreferrer nofollow" target="_blank">Apr - Jun 2022</a><br><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue4-jul-sep-2022%20(1).pdf" rel="noopener noreferrer nofollow" target="_blank">Jul - Sep 2022</a><br><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue5-oct-dec-2022.pdf" rel="noopener noreferrer nofollow" target="_blank">Oct - Dec 2022</a></h3>
+<table>
+    <tbody>
+        <tr>
+            <th rowspan="1" colspan="1">
+                <p>2023</p>
+            </th>
+            <th rowspan="1" colspan="1">
+                <p>2022</p>
+            </th>
+        </tr>
+        <tr>
+            <td rowspan="1" colspan="1">
+                <h5><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue6-jan-mar-2023.pdf" rel="noopener noreferrer nofollow" target="_blank">Jan - Mar 2023</a></h5>
+            </td>
+            <td rowspan="1" colspan="1">
+                <h5><a href="/files/NACLI/02%20Learn%20with%20NACLI/naclicourses-issue2-janmar-2022.pdf" rel="noopener noreferrer nofollow" target="_blank">Jan - Mar 2022</a></h5>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1" colspan="1">
+                <h5><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue7-apr-jun-2023-v2.pdf" rel="noopener noreferrer nofollow" target="_blank">Apr - Jun 2023</a></h5>
+            </td>
+            <td rowspan="1" colspan="1">
+                <h5><a href="/files/NACLI/02%20Learn%20with%20NACLI/naclicourses-issue3-apr-jun-2022.pdf" rel="noopener noreferrer nofollow" target="_blank">Apr - Jun 2022</a></h5>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1" colspan="1">
+                <h5><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue8-jul-dec-2023.pdf" rel="noopener noreferrer nofollow" target="_blank">Jul - Dec 2023</a></h5>
+            </td>
+            <td rowspan="1" colspan="1">
+                <h5><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue4-jul-sep-2022%20(1).pdf" rel="noopener noreferrer nofollow" target="_blank">Jul - Sep 2022</a></h5>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1" colspan="1">
+                <h5><a href="/files/naclicourses_issue8_oct_2023_mar_2024__v2_.pdf" rel="noopener noreferrer nofollow" target="_blank">Oct 2023 - Mar 2024</a></h5>
+            </td>
+            <td rowspan="1" colspan="1">
+                <h5><a href="/files/Our%20Network/NACLI/Learn%20With%20NACLI/naclicourses-issue5-oct-dec-2022.pdf" rel="noopener noreferrer nofollow" target="_blank">Oct - Dec 2022</a></h5>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p></p>

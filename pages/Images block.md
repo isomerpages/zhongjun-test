@@ -4,9 +4,7 @@ permalink: /images-block/
 variant: tiptap
 description: ""
 ---
-<div class="isomer-image-wrapper">
-    <img style="width: 100%" height="auto" width="100%" alt="" src="/images/media/events/industry_briefing_2023_banner.jpg">
-</div>
+<a class="isomer-image-wrapper" href="https://www.google.com"><img style="width: 100%" height="auto" width="100%" alt="" src="/images/Rubber_g7de116bc3_1280.png"></a>
 <p>The Smart Nation and Digital Government Industry Briefing 2023 returned
     on 24 May at Suntec Convention Centre.</p>
 <p><strong>Themed “Engineering Digital Government: Next Bound of Industry Partnerships”, this year’s event focused on:</strong>

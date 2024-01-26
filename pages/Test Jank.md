@@ -28,6 +28,8 @@ starting mid-2023</p>
 <p>More details on the announcements are found in the <a href="https://www.tech.gov.sg/media/media-releases/2023-05-24-government-projected-to-spend-on-ict-in-fy23" rel="noopener noreferrer nofollow" target="_blank">media release</a>.</p>
 <p>Want to catch up on the discussions and insights from the event? Head
 over to our <a href="https://go.gov.sg/ib2023-virtual" rel="noopener noreferrer nofollow" target="_blank">LinkedIn event page</a>.</p>
+<p><a href="/test" rel="noopener noreferrer nofollow" target="_blank">Test</a>
+</p>
 <h3>Event Details</h3>
 <p><strong>Date:</strong> 24 May 2023 (Wed)
 <br><strong>Venue: </strong>Suntec City Convention Centre, Summit 1 &amp;

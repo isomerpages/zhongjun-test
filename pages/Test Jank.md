@@ -30,6 +30,10 @@ starting mid-2023</p>
 over to our <a href="https://go.gov.sg/ib2023-virtual" rel="noopener noreferrer nofollow" target="_blank">LinkedIn event page</a>.</p>
 <p><a href="/test" rel="noopener noreferrer nofollow" target="_blank">Test</a>
 </p>
+<p></p>
+<div class="isomer-image-wrapper">
+<img style="width: 100%" height="auto" width="100%" alt="" src="/images/mountains-g80d215c20_1280.jpg">
+</div>
 <h3>Event Details</h3>
 <p><strong>Date:</strong> 24 May 2023 (Wed)
 <br><strong>Venue: </strong>Suntec City Convention Centre, Summit 1 &amp;

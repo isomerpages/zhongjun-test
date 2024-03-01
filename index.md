@@ -10,22 +10,19 @@ sections:
       title: Easily set up good government websites
       subtitle: Free, fast, easy
       background: /images/hero-banner.png
-      button: Find out if I'm a good fit
-      url: /contact-us/
-      key_highlights:
-        - title: Highlight A
-          description: <iframe></iframe>ffffffsrc
-          url: https://google.com
-        - title: Highlight B
-          description: Important highlight B is equally important
-          url: https://gmail.com
-        - title: Page A
-          description: Page A is important too
-          url: /privacy/
       variant: side
       backgroundColor: black
       size: md
       alignment: right
+      dropdown:
+        title: Hero Dropdown Title
+        options:
+          - title: Hero Dropdown Element Title
+            url: /test
+          - title: Hero Dropdown Element Title
+            url: /test2
+          - title: Hero Dropdown Element Title
+            url: /test3
   - infobar:
       title: Infobar title
       subtitle: Subtitle

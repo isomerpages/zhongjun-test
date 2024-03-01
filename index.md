@@ -10,7 +10,7 @@ sections:
       title: Easily set up good government websites
       subtitle: Free, fast, easy
       background: /images/hero-banner.png
-      variant: image
+      variant: floating
       backgroundColor: white
       size: md
       alignment: right

@@ -4,7 +4,7 @@ title: Site Titles
 description: An Isomer site of the Singapore Government!
 image: /images/aa.png
 permalink: /
-notification: Here's a notification bar-you can test
+notification: ""
 sections:
   - hero:
       title: Easily set up good government websites
@@ -23,7 +23,9 @@ sections:
           description: Page A is important too
           url: /privacy/
       variant: side
-      backgroundColor: white
+      backgroundColor: black
+      size: md
+      alignment: right
   - infobar:
       title: Infobar title
       subtitle: Subtitle

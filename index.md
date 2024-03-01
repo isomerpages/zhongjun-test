@@ -16,7 +16,7 @@ sections:
       alignment: right
       key_highlights:
         - title: Highlight A
-          description: <iframe></iframe>ffffffsrc
+          description: ""
           url: https://google.com
         - title: Highlight B
           description: Important highlight B is equally important

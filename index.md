@@ -11,7 +11,7 @@ sections:
       subtitle: Free, fast, easy
       background: /images/hero-banner.png
       variant: side
-      backgroundColor: black
+      backgroundColor: white
       size: md
       alignment: right
       dropdown:

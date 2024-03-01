@@ -7,10 +7,10 @@ permalink: /
 notification: Here's a notification bar-you can test
 sections:
   - hero:
-      title: Nature Site
+      title: Easily set up good government websites
       subtitle: Free, fast, easy
       background: /images/hero-banner.png
-      button: Contact Us
+      button: Find out if I'm a good fit
       url: /contact-us/
       key_highlights:
         - title: Highlight A
@@ -22,6 +22,8 @@ sections:
         - title: Page A
           description: Page A is important too
           url: /privacy/
+      variant: side
+      backgroundColor: white
   - infobar:
       title: Infobar title
       subtitle: Subtitle

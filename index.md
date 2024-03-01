@@ -23,7 +23,7 @@ sections:
           url: https://gmail.com
         - title: Page A
           description: Page A is important too
-          url: /privacy/
+          url: ""
       button: Find out if I'm a good fit
       url: /contact-us/
   - infobar:

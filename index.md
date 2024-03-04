@@ -24,6 +24,9 @@ sections:
         - title: Page A
           description: Page A is important too
           url: ""
+        - title: Key Highlight Title
+          description: Key Highlight description
+          url: ""
       button: Find out if I'm a good fit
       url: /contact-us/
   - infobar:

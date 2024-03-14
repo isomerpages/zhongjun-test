@@ -31,4 +31,35 @@ description: ""
 </div>
 </a>
 </div>
+<p>Base paragraph</p>
+<ol data-tight="true" class="tight">
+<li>
+<p>Item 1</p>
+</li>
+<li>
+<p>Item 2</p>
+<ol data-tight="true" class="tight">
+<li>
+<p>Item 3</p>
+</li>
+<li>
+<p>Item 4</p>
+<ol data-tight="true" class="tight">
+<li>
+<p>Item 5</p>
+</li>
+<li>
+<p>Item 6</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Item 7</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Item 8</p>
+</li>
+</ol>
 <p></p>

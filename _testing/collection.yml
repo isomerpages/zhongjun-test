@@ -4,7 +4,4 @@ collections:
     order:
       - Test page.md
       - Another item.md
-      - Test Subfolder/Another subfolder page.md
-      - Test Subfolder/Subfolder page.md
-      - Test Subfolder/.keep
       - Example Title.md

@@ -1,8 +1,15 @@
 logo: /images/isomer-logo.svg
 links:
   - title: About Us
-    url: /about-us/
-  - title: Resource Room
+    url: /about
+  - title: Resources
     resource_room: true
+  - title: Custom group
+    url: /permalink
+    sublinks:
+      - title: Another item
+        url: https://www.isomer.gov.sg
+      - title: Submenu item
+        url: /permalink
   - title: Contact Us
     url: /contact-us/

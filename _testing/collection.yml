@@ -1,0 +1,7 @@
+collections:
+  testing:
+    output: true
+    order:
+      - Test page.md
+      - Another item.md
+      - Example Title.md

@@ -2,6 +2,7 @@ collections:
   testing:
     output: true
     order:
+      - Subfolder/.keep
       - Test new editor.md
       - Test page.md
       - Another item.md

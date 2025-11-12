@@ -1,4 +1,4 @@
 collections:
-  test:
+  empty-folder:
     output: true
     order: []

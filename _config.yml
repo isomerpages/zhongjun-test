@@ -1,4 +1,4 @@
-title: Titles
+title: Site Titles
 url: https://www.notsecure.gov.sg
 favicon: /images/favicon-isomer.ico
 colors:
@@ -57,3 +57,4 @@ facebook-pixel: ""
 google_analytics: ""
 linkedin-insights: ""
 resources_name: media-room
+google_analytics_ga4: G-Y65DJT571K

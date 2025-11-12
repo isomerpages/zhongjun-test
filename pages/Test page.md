@@ -1,10 +1,15 @@
 ---
 title: Test page
-permalink: /test/
+permalink: /test-page/
+variant: tiptap
 description: ""
 ---
-This is a test page.
-
-Example test.
-
-Another test.
+<p>This is an image:</p>
+<div class="isomer-image-wrapper">
+<img style="width: 100%" height="auto" width="100%" alt="" src="/images/city-picture.jpg">
+</div>
+<p></p>
+<div class="isomer-image-wrapper">
+<img style="width: 100%" height="auto" width="100%" alt="" src="/images/Rubber_4.png">
+</div>
+<p></p>
